@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-gray-200 antialiased overflow-x-hidden;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: rgba(0, 229, 255, 0.2);
+    color: #00E5FF;
+  }
+}
+
+@layer components {
+  /* ── Glassmorphism core utility ── */
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .glass-card-hover {
+    @apply transition-all duration-300;
+  }
+  .glass-card-hover:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.14);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  /* ── Glow text ── */
+  .text-glow {
+    text-shadow: 0 0 40px rgba(0, 229, 255, 0.4), 0 0 80px rgba(0, 229, 255, 0.15);
+  }
+  .text-glow-green {
+    text-shadow: 0 0 40px rgba(74, 222, 128, 0.4);
+  }
+
+  /* ── Glow border on focus ── */
+  .input-glow:focus {
+    box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.1);
+  }
+
+  /* ── Neon divider ── */
+  .neon-hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.3), transparent);
+  }
+}
+
+/* ── Premium scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 100px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* ── Recharts tooltip glassmorphism ── */
+.recharts-tooltip-wrapper .recharts-default-tooltip {
+  background: rgba(5, 8, 22, 0.9) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 12px !important;
+  backdrop-filter: blur(20px) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* ── Range input styling ── */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-track {
+  background: rgba(255, 255, 255, 0.08);
+  height: 6px;
+  border-radius: 100px;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #00E5FF;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+  margin-top: -6px;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 16px rgba(0, 229, 255, 0.8);
+}
+
+/* ── Animated gradient border ── */
+@keyframes gradient-border {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-border {
+  background: linear-gradient(90deg, #00E5FF, #8B5CF6, #4ADE80, #00E5FF);
+  background-size: 300% 300%;
+  animation: gradient-border 4s ease infinite;
+}
+
+/* ── Page transition ── */
+.page-fade {
+  animation: pageFadeIn 0.5s ease-out forwards;
+}
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* ── Floating animation for Hero cards ── */
+@keyframes float-up {
+  0%, 100% { transform: translateY(0px);  }
+  50%       { transform: translateY(-14px); }
+}
+@keyframes float-down {
+  0%, 100% { transform: translateY(0px);  }
+  50%       { transform: translateY(14px);  }
+}
+.animate-float-up   { animation: float-up   5s ease-in-out infinite; }
+.animate-float-down { animation: float-down 6s ease-in-out infinite; }
+
+/* ── Dot background grid ── */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
